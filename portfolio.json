@@ -1,0 +1,22 @@
+[
+  {
+    "nama": "Landing Page APPSKEP",
+    "link": "https://appskep.id",
+    "image": "image/appskep.png"
+  },
+  {
+    "nama": "UKOM APPSKEP",
+    "link": "https://ukom.appskep.id",
+    "image": "image/ukom.png"
+  },
+  {
+    "nama": "CPNS APPSKEP",
+    "link": "https://cpns.appskep.id",
+    "image": "image/cpns.png"
+  },
+   {
+    "nama": "BASE APPSKEP",
+    "link": "https://base.appskep.id",
+    "image": "image/base.png"
+  }
+]
