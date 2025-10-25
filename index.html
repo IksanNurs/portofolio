@@ -17,7 +17,7 @@
     header {
       background: linear-gradient(90deg, #388e7c 0%, #1976d2 100%);
       color: #fff;
-      padding: 30px 0 30px 0;
+      padding: 40px 0 40px 0;
       text-align: center;
       box-shadow: 0 2px 8px rgba(0,0,0,0.07);
       position: relative;
@@ -42,31 +42,42 @@
       font-weight: 700;
       letter-spacing: 2px;
       text-shadow: 0 2px 8px #1de9b6aa;
+      position: relative;
+      z-index: 3;
+    }
+    header p {
+      position: relative;
+      z-index: 3;
     }
     nav {
       display: flex;
       justify-content: center;
-      margin: 24px 0;
+      margin: 40px 0;
     }
     .nav-btn {
-      background: #fff;
-      border: 2px solid #388e7c;
-      color: #388e7c;
-      padding: 10px 32px;
-      margin: 0 8px;
-      font-size: 1.1rem;
+      background: linear-gradient(135deg, #e3f2fd 0%, #e8f5e9 100%);
+      border: 1.5px solid rgba(56,142,124,0.18);
+      color: #1976d2;
+      padding: 12px 40px;
+      margin: 0 10px;
+      font-size: 1.13rem;
       font-weight: 700;
-      border-radius: 24px;
+      border-radius: 32px;
       cursor: pointer;
-      transition: all 0.3s cubic-bezier(.4,2,.3,1);
-      box-shadow: 0 2px 8px rgba(29,233,182,0.07);
-      perspective: 400px;
+      box-shadow: 0 4px 24px rgba(25,118,210,0.08), 0 1.5px 8px rgba(56,142,124,0.09);
+      backdrop-filter: blur(6px);
+      letter-spacing: 1.2px;
+      transition: all 0.32s cubic-bezier(.4,2,.3,1);
+      position: relative;
+      overflow: hidden;
     }
     .nav-btn.active, .nav-btn:hover {
-      background: #388e7c;
+      background: linear-gradient(90deg, #388e7c 0%, #1976d2 100%);
       color: #fff;
-      box-shadow: 0 8px 10px #1de9b6cc, 0 2px 8px #009e6e44;
-      transform: scale(1.08) rotateX(8deg) rotateY(-8deg) skewY(-2deg);
+      box-shadow: 0 8px 32px #1976d2cc, 0 2px 8px #009e6e44;
+      border: 1.5px solid #1976d2;
+      transform: scale(1.09) translateY(-2px) rotateX(7deg) rotateY(-7deg) skewY(-1deg);
+      text-shadow: 0 2px 8px #1de9b6aa;
     }
     .section {
       max-width: 800px;
@@ -142,6 +153,8 @@
       text-decoration: none;
       transition: background 0.2s, color 0.2s, box-shadow 0.2s;
       letter-spacing: 1px;
+      position: relative;
+      z-index: 3;
     }
     .cv-link:hover {
       background: #1976d2;
@@ -217,13 +230,136 @@
       font-style: italic;
       opacity: 0.8;
     }
+    .batik-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .batik-overlay svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+    @keyframes spinBatik {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes spinBatik2 {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(-360deg); }
+    }
+    .splash-screen {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: linear-gradient(135deg, #e3f2fd 0%, #e8f5e9 60%, #1976d2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.7s cubic-bezier(.4,2,.3,1);
+      opacity: 1;
+    }
+    .splash-screen.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .splash-content {
+      text-align: center;
+      animation: splashFadeIn 1.2s cubic-bezier(.4,2,.3,1);
+    }
+    @keyframes splashFadeIn {
+      from { opacity: 0; transform: scale(0.8) translateY(40px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .splash-title {
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: #1976d2;
+      margin-top: 18px;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 8px #388e7c44;
+      font-family: 'Roboto', monospace;
+    }
+    .splash-loader {
+      margin-top: 28px;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+    .loader-dot {
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #388e7c 0%, #1976d2 100%);
+      opacity: 0.7;
+      animation: loaderBounce 1.2s infinite alternate;
+    }
+    .loader-dot:nth-child(2) { animation-delay: 0.3s; }
+    .loader-dot:nth-child(3) { animation-delay: 0.6s; }
+    @keyframes loaderBounce {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-18px); }
+    }
   </style>
 </head>
 <body>
   <div class="particles-bg">
     <canvas id="particlesCanvas"></canvas>
   </div>
+  <div id="splash" class="splash-screen">
+    <div class="splash-content">
+      <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="40" cy="40" r="36" fill="#1976d2" opacity="0.13"/>
+        <rect x="22" y="32" width="36" height="16" rx="8" fill="#388e7c" opacity="0.18"/>
+        <text x="40" y="48" text-anchor="middle" font-size="28" font-family="monospace" fill="#217a5b" opacity="0.8">{ }</text>
+      </svg>
+      <div class="splash-title">Welcome</div>
+      <div class="splash-loader">
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+      </div>
+    </div>
+  </div>
   <header>
+    <div class="batik-overlay">
+      <svg width="100%" height="100%" viewBox="0 0 800 120" preserveAspectRatio="none" style="position:absolute;top:0;left:0;z-index:1;pointer-events:none;">
+        <defs>
+          <pattern id="batikPattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+            <circle cx="30" cy="30" r="22" fill="#388e7c" opacity="0.13"/>
+            <circle cx="30" cy="30" r="12" fill="#1976d2" opacity="0.11"/>
+            <rect x="10" y="10" width="40" height="40" rx="12" fill="#fff" opacity="0.07"/>
+            <ellipse cx="30" cy="30" rx="18" ry="8" fill="#217a5b" opacity="0.09"/>
+          </pattern>
+        </defs>
+        <rect x="0" y="0" width="800" height="120" fill="url(#batikPattern)" />
+        <!-- Ornamen tambahan -->
+        <path d="M0,60 Q200,0 400,60 T800,60" stroke="#1976d2" stroke-width="3" fill="none" opacity="0.13"/>
+        <path d="M0,100 Q200,140 400,100 T800,100" stroke="#388e7c" stroke-width="2" fill="none" opacity="0.11"/>
+        <g opacity="0.12">
+          <circle cx="120" cy="40" r="18" fill="#217a5b"/>
+          <circle cx="680" cy="80" r="14" fill="#1976d2"/>
+          <ellipse cx="400" cy="30" rx="32" ry="10" fill="#388e7c"/>
+        </g>
+        <!-- Ornamen keren tambahan -->
+        <g>
+          <g style="animation: spinBatik 18s linear infinite; transform-origin: 700px 30px;">
+            <polygon points="700,30 715,45 730,30 715,15" fill="#1976d2" opacity="0.14"/>
+            <circle cx="715" cy="30" r="8" fill="#388e7c" opacity="0.13"/>
+          </g>
+          <g style="animation: spinBatik2 24s linear infinite; transform-origin: 100px 100px;">
+            <ellipse cx="100" cy="100" rx="18" ry="8" fill="#217a5b" opacity="0.13"/>
+            <polygon points="100,100 110,110 120,100 110,90" fill="#1976d2" opacity="0.12"/>
+          </g>
+        </g>
+      </svg>
+    </div>
     <h1>Full Stack Developer</h1>
     <p>Iksan Nursalim</p>
     <a href="Resume.pdf" download class="cv-link" style="display:inline-block;margin-top:12px;font-weight:700;color:#1976d2;background:#fff;padding:8px 24px;border-radius:24px;box-shadow:0 2px 8px #1976d222;text-decoration:none;transition:background 0.2s,color 0.2s;">Download Resume</a>
@@ -279,6 +415,7 @@
     const canvas = document.getElementById('particlesCanvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
+    const codeSymbols = ['{}', '</>', '()', '=>', '[]', '/* */', 'fn', 'let', 'const', 'class', 'import', 'return', 'if', 'else', '&&', '||', 'for', 'while', 'try', 'catch'];
     function resizeCanvas() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -287,7 +424,7 @@
     resizeCanvas();
     function createParticles() {
       particles = [];
-      const shapes = ['circle','triangle','square'];
+      const shapes = ['circle','triangle','square','code'];
       for(let i=0; i<36; i++) {
         const shape = shapes[Math.floor(Math.random()*shapes.length)];
         particles.push({
@@ -304,7 +441,8 @@
             'rgba(38,50,56,0.3)',   // abu gelap
             'rgba(255,255,255,0.18)'
           ][Math.floor(Math.random()*4)],
-          shape
+          shape,
+          symbol: shape==='code' ? codeSymbols[Math.floor(Math.random()*codeSymbols.length)] : null
         });
       }
     }
@@ -321,16 +459,27 @@
         ctx.beginPath();
         if(p.shape==='circle') {
           ctx.arc(0,0,p.r*scale,0,2*Math.PI);
+          ctx.fillStyle = p.color;
+          ctx.fill();
         } else if(p.shape==='triangle') {
           ctx.moveTo(0,-p.r*scale);
           ctx.lineTo(p.r*scale,p.r*scale);
           ctx.lineTo(-p.r*scale,p.r*scale);
           ctx.closePath();
+          ctx.fillStyle = p.color;
+          ctx.fill();
         } else if(p.shape==='square') {
           ctx.rect(-p.r*scale,-p.r*scale,p.r*scale*2,p.r*scale*2);
+          ctx.fillStyle = p.color;
+          ctx.fill();
+        } else if(p.shape==='code' && p.symbol) {
+          ctx.font = `${Math.round(p.r*2.2*scale)}px 'Roboto', monospace`;
+          ctx.fillStyle = p.color;
+          ctx.globalAlpha = 0.7;
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(p.symbol, 0, 0);
         }
-        ctx.fillStyle = p.color;
-        ctx.fill();
         ctx.restore();
       }
     }
@@ -350,6 +499,11 @@
       requestAnimationFrame(animateParticles);
     }
     animateParticles();
+    window.addEventListener('DOMContentLoaded', function() {
+      setTimeout(function() {
+        document.getElementById('splash').classList.add('hide');
+      }, 1800);
+    });
   </script>
 </body>
 </html>
