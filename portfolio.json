@@ -18,5 +18,10 @@
     "nama": "BASE APPSKEP",
     "link": "https://base.appskep.id",
     "image": "image/base.png"
+  },
+  {
+    "nama": "LMS ITP",
+    "link": "https://lms.itp.ac.id",
+    "image": "image/lms.png"
   }
 ]
