@@ -55,29 +55,41 @@
       margin: 40px 0;
     }
     .nav-btn {
-      background: linear-gradient(135deg, #e3f2fd 0%, #e8f5e9 100%);
-      border: 1.5px solid rgba(56,142,124,0.18);
-      color: #1976d2;
-      padding: 12px 40px;
+      background: #fff;
+      border: 1.5px solid #217a5b;
+      color: #217a5b;
+      padding: 12px 40px 12px 40px;
       margin: 0 10px;
       font-size: 1.13rem;
       font-weight: 700;
       border-radius: 32px;
       cursor: pointer;
-      box-shadow: 0 4px 24px rgba(25,118,210,0.08), 0 1.5px 8px rgba(56,142,124,0.09);
+      box-shadow: 0 4px 24px rgba(33,122,91,0.09);
       backdrop-filter: blur(6px);
       letter-spacing: 1.2px;
       transition: all 0.32s cubic-bezier(.4,2,.3,1);
       position: relative;
       overflow: hidden;
     }
+    .nav-btn .glasses-icon {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 28px;
+      height: 18px;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
     .nav-btn.active, .nav-btn:hover {
-      background: linear-gradient(90deg, #388e7c 0%, #1976d2 100%);
+      background: #217a5b;
       color: #fff;
-      box-shadow: 0 8px 32px #1976d2cc, 0 2px 8px #009e6e44;
-      border: 1.5px solid #1976d2;
+      border: 1.5px solid #217a5b;
       transform: scale(1.09) translateY(-2px) rotateX(7deg) rotateY(-7deg) skewY(-1deg);
       text-shadow: 0 2px 8px #1de9b6aa;
+    }
+    .nav-btn.active .glasses-icon {
+      opacity: 0;
     }
     .section {
       max-width: 800px;
@@ -90,6 +102,7 @@
       animation: fadeIn 0.7s;
       perspective: 1200px;
       border: 1px solid #1976d2;
+      animation: fadeInSection 1.2s cubic-bezier(.4,2,.3,1);
     }
     .section.active {
       display: block;
@@ -97,6 +110,10 @@
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(24px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInSection {
+      from { opacity: 0; transform: scale(0.97) translateY(32px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
     }
     h2, h3 {
       color: #1976d2;
@@ -180,14 +197,19 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.32s, box-shadow 0.32s, background 0.32s;
       position: relative;
       overflow: hidden;
+      animation: cardPop 1.1s cubic-bezier(.4,2,.3,1);
+    }
+    @keyframes cardPop {
+      from { opacity: 0; transform: scale(0.92) translateY(32px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
     }
     .portfolio-card:hover {
-      transform: scale(1.04) translateY(-6px);
-      box-shadow: 0 8px 32px #388e7c88;
-      z-index: 2;
+      background: linear-gradient(135deg, #e8f5e9 0%, #e3f2fd 100%);
+      box-shadow: 0 12px 40px #217a5b44;
+      transform: scale(1.07) translateY(-10px) rotateX(6deg) rotateY(-6deg);
     }
     .portfolio-card img {
       width: 100%;
@@ -306,44 +328,21 @@
       0% { transform: translateY(0); }
       100% { transform: translateY(-18px); }
     }
-    .glasses-btn {
-      background: none;
-      border: none;
-      padding: 0 18px;
-      margin: 0 10px;
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      border-radius: 32px;
-      box-shadow: 0 4px 24px rgba(191,161,74,0.08), 0 1.5px 8px rgba(255,215,79,0.09);
-      transition: box-shadow 0.32s, transform 0.32s;
-      position: relative;
-      overflow: hidden;
+    /* Ilustrasi SVG programmer di header */
+    .header-illustration {
+      position: absolute;
+      right: 32px;
+      top: 24px;
+      width: 120px;
+      height: 120px;
+      z-index: 2;
+      opacity: 0.18;
+      pointer-events: none;
+      animation: floatDev 3.2s ease-in-out infinite alternate;
     }
-    .glasses-btn .btn-glasses {
-      width: 48px;
-      height: 24px;
-      margin-right: 12px;
-      transition: filter 0.2s;
-    }
-    .glasses-btn .btn-label {
-      font-size: 1.13rem;
-      font-weight: 700;
-      color: #bfa14a;
-      letter-spacing: 1.2px;
-      font-family: 'Roboto', Arial, sans-serif;
-      text-shadow: 0 2px 8px #ffe08244;
-    }
-    .glasses-btn.active, .glasses-btn:hover {
-      box-shadow: 0 8px 32px #bfa14acc, 0 2px 8px #ffe08244;
-      transform: scale(1.09) translateY(-2px);
-    }
-    .glasses-btn.active .btn-label, .glasses-btn:hover .btn-label {
-      color: #ffd54f;
-      text-shadow: 0 2px 8px #bfa14a88;
-    }
-    .glasses-btn.active .btn-glasses, .glasses-btn:hover .btn-glasses {
-      filter: drop-shadow(0 2px 8px #bfa14a88);
+    @keyframes floatDev {
+      0% { transform: translateY(0) scale(1); }
+      100% { transform: translateY(-18px) scale(1.04); }
     }
   </style>
 </head>
@@ -402,37 +401,23 @@
     <h1>Full Stack Developer</h1>
     <p>Iksan Nursalim</p>
     <a href="Resume.pdf" download class="cv-link" style="display:inline-block;margin-top:12px;font-weight:700;color:#1976d2;background:#fff;padding:8px 24px;border-radius:24px;box-shadow:0 2px 8px #1976d222;text-decoration:none;transition:background 0.2s,color 0.2s;">Download Resume</a>
+    <div class="header-illustration">
+      <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="60" cy="100" rx="38" ry="12" fill="#217a5b" opacity="0.18"/>
+        <rect x="38" y="40" width="44" height="32" rx="8" fill="#388e7c" opacity="0.22"/>
+        <rect x="48" y="52" width="24" height="8" rx="4" fill="#fff" opacity="0.18"/>
+        <circle cx="60" cy="56" r="8" fill="#1976d2" opacity="0.22"/>
+        <rect x="54" y="68" width="12" height="18" rx="6" fill="#217a5b" opacity="0.22"/>
+        <text x="60" y="62" text-anchor="middle" font-size="14" font-family="monospace" fill="#1976d2" opacity="0.7">dev</text>
+      </svg>
+    </div>
   </header>
   <nav>
-    <button class="nav-btn glasses-btn active" onclick="showSection('cv')">
-      <svg class="btn-glasses" width="48" height="24" viewBox="0 0 48 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="12" cy="12" rx="10" ry="8" fill="url(#goldGrad)" stroke="#bfa14a" stroke-width="2"/>
-        <ellipse cx="36" cy="12" rx="10" ry="8" fill="url(#goldGrad)" stroke="#bfa14a" stroke-width="2"/>
-        <rect x="12" y="10" width="24" height="4" rx="2" fill="#bfa14a"/>
-        <defs>
-          <linearGradient id="goldGrad" x1="0" y1="0" x2="48" y2="24" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#ffe082"/>
-            <stop offset="0.5" stop-color="#ffd54f"/>
-            <stop offset="1" stop-color="#bfa14a"/>
-          </linearGradient>
-        </defs>
-      </svg>
-      <span class="btn-label">Resume</span>
+    <button class="nav-btn active" onclick="showSection('cv')">
+      Resume
     </button>
-    <button class="nav-btn glasses-btn" onclick="showSection('portfolio')">
-      <svg class="btn-glasses" width="48" height="24" viewBox="0 0 48 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="12" cy="12" rx="10" ry="8" fill="url(#goldGrad)" stroke="#bfa14a" stroke-width="2"/>
-        <ellipse cx="36" cy="12" rx="10" ry="8" fill="url(#goldGrad)" stroke="#bfa14a" stroke-width="2"/>
-        <rect x="12" y="10" width="24" height="4" rx="2" fill="#bfa14a"/>
-        <defs>
-          <linearGradient id="goldGrad" x1="0" y1="0" x2="48" y2="24" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#ffe082"/>
-            <stop offset="0.5" stop-color="#ffd54f"/>
-            <stop offset="1" stop-color="#bfa14a"/>
-          </linearGradient>
-        </defs>
-      </svg>
-      <span class="btn-label">Portofolio</span>
+    <button class="nav-btn" onclick="showSection('portfolio')">
+      Portofolio
     </button>
   </nav>
   <section id="cv" class="section active" style="margin-bottom: 100px;">
