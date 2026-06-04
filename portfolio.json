@@ -20,8 +20,18 @@
     "image": "image/base.png"
   },
   {
-    "nama": "LMS ITP",
-    "link": "https://lms.itp.ac.id",
+    "nama": "inventory",
+    "link": "https://inventory.inovansa.com",
     "image": "image/lms.png"
+  },
+  {
+    "nama": "inventory",
+    "link": "https://inventory.inovansa.com",
+    "image": "image/inventory.png"
+  },
+   {
+    "nama": "undangan digital",
+    "link": "https://undangan.inovansa.com",
+    "image": "image/undangan.png"
   }
 ]
