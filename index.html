@@ -1,561 +1,1000 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portofolio | Full Stack Developer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Roboto', Arial, sans-serif;
-      margin: 0;
-      background: linear-gradient(135deg, #e3f2fd 0%, #e8f5e9 50%, #263238 100%);
-      color: #222;
-      position: relative;
-      overflow-x: hidden;
-    }
-    header {
-      background: linear-gradient(90deg, #388e7c 0%, #1976d2 100%);
-      color: #fff;
-      padding: 40px 0 40px 0;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-      position: relative;
-      overflow: hidden;
-    }
-    .glasses {
-      width: 120px;
-      height: 48px;
-      margin-bottom: 16px;
-      animation: floatGlasses 2.5s ease-in-out infinite alternate;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    @keyframes floatGlasses {
-      0% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 0 #1de9b6); }
-      100% { transform: translateY(-12px) scale(1.05); filter: drop-shadow(0 8px 16px #1de9b6aa); }
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-shadow: 0 2px 8px #1de9b6aa;
-      position: relative;
-      z-index: 3;
-    }
-    header p {
-      position: relative;
-      z-index: 3;
-    }
-    nav {
-      display: flex;
-      justify-content: center;
-      margin: 40px 0;
-    }
-    .nav-btn {
-      background: #fff;
-      border: 1.5px solid #217a5b;
-      color: #217a5b;
-      padding: 12px 40px 12px 40px;
-      margin: 0 10px;
-      font-size: 1.13rem;
-      font-weight: 700;
-      border-radius: 32px;
-      cursor: pointer;
-      box-shadow: 0 4px 24px rgba(33,122,91,0.09);
-      backdrop-filter: blur(6px);
-      letter-spacing: 1.2px;
-      transition: all 0.32s cubic-bezier(.4,2,.3,1);
-      position: relative;
-      overflow: hidden;
-    }
-    .nav-btn .glasses-icon {
-      position: absolute;
-      left: 18px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 28px;
-      height: 18px;
-      opacity: 0.7;
-      transition: opacity 0.2s;
-    }
-    .nav-btn.active, .nav-btn:hover {
-      background: #217a5b;
-      color: #fff;
-      border: 1.5px solid #217a5b;
-      transform: scale(1.09) translateY(-2px) rotateX(7deg) rotateY(-7deg) skewY(-1deg);
-      text-shadow: 0 2px 8px #1de9b6aa;
-    }
-    .nav-btn.active .glasses-icon {
-      opacity: 0;
-    }
-    .section {
-      max-width: 800px;
-      margin: 0 auto;
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 2px 16px rgba(29,233,182,0.09);
-      padding: 32px;
-      display: none;
-      animation: fadeIn 0.7s;
-      perspective: 1200px;
-      border: 1px solid #1976d2;
-      animation: fadeInSection 1.2s cubic-bezier(.4,2,.3,1);
-    }
-    .section.active {
-      display: block;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeInSection {
-      from { opacity: 0; transform: scale(0.97) translateY(32px); }
-      to { opacity: 1; transform: scale(1) translateY(0); }
-    }
-    h2, h3 {
-      color: #1976d2;
-    }
-    a {
-      color: #388e7c;
-      text-decoration: underline;
-      transition: color 0.2s;
-    }
-    a:hover {
-      color: #1976d2;
-    }
-    .pdf-viewer {
-      background: linear-gradient(135deg, #e3f2fd 0%, #e8f5e9 100%);
-      border-radius: 16px;
-      box-shadow: 0 4px 32px #1de9b633;
-      padding: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      animation: fadeInViewer 1.2s cubic-bezier(.4,2,.3,1);
-      transition: box-shadow 0.3s, transform 0.3s;
-      perspective: 900px;
-    }
- 
-    iframe {
-      box-shadow: 0 4px 32px #388e7c44, 0 2px 8px #1976d222;
-      transition: box-shadow 0.3s, transform 0.3s;
-      transform-style: preserve-3d;
-    }
- 
-    /* Particle 3D style */
-    .particles-bg {
-      position: fixed;
-      top: 0; left: 0; width: 100vw; height: 100vh;
-      pointer-events: none;
-      z-index: 0;
-    }
-    @media (max-width: 600px) {
-      header h1 { font-size: 1.5rem; }
-      .section { padding: 16px; }
-      .nav-btn { padding: 8px 16px; font-size: 1rem; }
-      .glasses { width: 80px; height: 32px; }
-    }
-    .cv-link {
-      display: inline-block;
-      margin-top: 12px;
-      font-weight: 700;
-      color: #1976d2;
-      background: #fff;
-      padding: 8px 24px;
-      border-radius: 24px;
-      box-shadow: 0 2px 8px #1976d222;
-      text-decoration: none;
-      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-      letter-spacing: 1px;
-      position: relative;
-      z-index: 3;
-    }
-    .cv-link:hover {
-      background: #1976d2;
-      color: #fff;
-      box-shadow: 0 4px 16px #1976d288;
-      text-shadow: 0 2px 8px #fff;
-      filter: none;
-    }
-    .portfolio-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 32px;
-      justify-content: center;
-      margin-top: 16px;
-      margin-bottom: 64px;
-    }
-    .portfolio-card {
-      background: linear-gradient(135deg, #e3f2fd 0%, #e8f5e9 100%);
-      border-radius: 18px;
-      border:1px solid #1976d2;
-      width: 320px;
-      padding: 0 0 24px 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: transform 0.32s, box-shadow 0.32s, background 0.32s;
-      position: relative;
-      overflow: hidden;
-      animation: cardPop 1.1s cubic-bezier(.4,2,.3,1);
-    }
-    @keyframes cardPop {
-      from { opacity: 0; transform: scale(0.92) translateY(32px); }
-      to { opacity: 1; transform: scale(1) translateY(0); }
-    }
-    .portfolio-card:hover {
-      background: linear-gradient(135deg, #e8f5e9 0%, #e3f2fd 100%);
-      box-shadow: 0 12px 40px #217a5b44;
-      transform: scale(1.07) translateY(-10px) rotateX(6deg) rotateY(-6deg);
-    }
-    .portfolio-card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      border-top-left-radius: 18px;
-      border-top-right-radius: 18px;
-      box-shadow: 0 2px 8px #1976d222;
-      background: #eee;
-    }
-    .portfolio-card .card-title {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: #1976d2;
-      margin: 18px 0 8px 0;
-      text-align: center;
-      letter-spacing: 1px;
-    }
-    .portfolio-card .card-link {
-      color: #388e7c;
-      font-weight: 600;
-      text-decoration: none;
-      background: #fff;
-      padding: 6px 18px;
-      border-radius: 16px;
-      box-shadow: 0 2px 8px #388e7c22;
-      transition: background 0.2s, color 0.2s;
-      margin-bottom: 8px;
-      display: inline-block;
-    }
-    .portfolio-card .card-link:hover {
-      background: #1976d2;
-      color: #fff;
-    }
-    .portfolio-more {
-      text-align: center;
-      color: #1976d2;
-      font-size: 1.1rem;
-      margin-top: 32px;
-      font-style: italic;
-      opacity: 0.8;
-    }
-    .batik-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
-    }
-    .batik-overlay svg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-    }
-    @keyframes spinBatik {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    @keyframes spinBatik2 {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(-360deg); }
-    }
-    .splash-screen {
-      position: fixed;
-      top: 0; left: 0; width: 100vw; height: 100vh;
-      background: linear-gradient(135deg, #e3f2fd 0%, #e8f5e9 60%, #1976d2 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      transition: opacity 0.7s cubic-bezier(.4,2,.3,1);
-      opacity: 1;
-    }
-    .splash-screen.hide {
-      opacity: 0;
-      pointer-events: none;
-    }
-    .splash-content {
-      text-align: center;
-      animation: splashFadeIn 1.2s cubic-bezier(.4,2,.3,1);
-    }
-    @keyframes splashFadeIn {
-      from { opacity: 0; transform: scale(0.8) translateY(40px); }
-      to { opacity: 1; transform: scale(1) translateY(0); }
-    }
-    .splash-title {
-      font-size: 2.1rem;
-      font-weight: 700;
-      color: #1976d2;
-      margin-top: 18px;
-      letter-spacing: 2px;
-      text-shadow: 0 2px 8px #388e7c44;
-      font-family: 'Roboto', monospace;
-    }
-    .splash-loader {
-      margin-top: 28px;
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-    }
-    .loader-dot {
-      width: 16px; height: 16px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #388e7c 0%, #1976d2 100%);
-      opacity: 0.7;
-      animation: loaderBounce 1.2s infinite alternate;
-    }
-    .loader-dot:nth-child(2) { animation-delay: 0.3s; }
-    .loader-dot:nth-child(3) { animation-delay: 0.6s; }
-    @keyframes loaderBounce {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-18px); }
-    }
-    /* Ilustrasi SVG programmer di header */
-    .header-illustration {
-      position: absolute;
-      right: 32px;
-      top: 24px;
-      width: 120px;
-      height: 120px;
-      z-index: 2;
-      opacity: 0.18;
-      pointer-events: none;
-      animation: floatDev 3.2s ease-in-out infinite alternate;
-    }
-    @keyframes floatDev {
-      0% { transform: translateY(0) scale(1); }
-      100% { transform: translateY(-18px) scale(1.04); }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Iksan Nursalim — Full Stack Developer building scalable web and mobile applications with Golang, React.js, and Flutter.">
+    <meta name="theme-color" content="#0B0F14">
+    <title>Iksan Nursalim | Full Stack Developer</title>
+    <!-- Modern Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ============================================
+           Design System — Deep Ink + Signal Amber
+           One accent, used sparingly. No gradients.
+           ============================================ */
+        :root {
+            /* Surfaces */
+            --bg-main: #0B0F14;
+            --bg-elevated: #131A22;
+            --bg-raised: #1A232D;
+
+            /* Text */
+            --text-main: #E8EDF2;
+            --text-muted: #7D8B9A;
+            --text-faint: #4E5A66;
+
+            /* The one accent */
+            --accent: #FFB020;
+            --accent-soft: rgba(255, 176, 32, 0.12);
+            --accent-line: rgba(255, 176, 32, 0.35);
+            --on-accent: #0B0F14;
+
+            /* Lines & surfaces */
+            --line: rgba(255, 255, 255, 0.07);
+            --line-strong: rgba(255, 255, 255, 0.14);
+            --card-bg: rgba(19, 26, 34, 0.55);
+
+            /* Shape */
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            --radius-pill: 9999px;
+
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Accessible focus ring — visible on every interactive element */
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+            border-radius: var(--radius-sm);
+        }
+
+        /* Single restrained ambient wash — replaces the old two-color glow dance */
+        .ambient-glow {
+            position: fixed;
+            top: -10%;
+            left: 50%;
+            width: 90vw;
+            max-width: 1200px;
+            height: 700px;
+            background: radial-gradient(ellipse at center, rgba(255, 176, 32, 0.055) 0%, transparent 65%);
+            transform: translateX(-50%);
+            z-index: -1;
+            filter: blur(80px);
+            pointer-events: none;
+        }
+
+        /* Fine grid texture — adds depth without color noise */
+        .ambient-grid {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.016) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.016) 1px, transparent 1px);
+            background-size: 72px 72px;
+            mask-image: radial-gradient(ellipse 100% 60% at 50% 0%, #000 0%, transparent 75%);
+            -webkit-mask-image: radial-gradient(ellipse 100% 60% at 50% 0%, #000 0%, transparent 75%);
+        }
+
+        /* ============================================
+           Navigation
+           ============================================ */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(11, 15, 20, 0.55);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid transparent;
+            z-index: 1000;
+            transition: background 0.4s ease, border-color 0.4s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(11, 15, 20, 0.88);
+            border-bottom-color: var(--line);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-main);
+            text-decoration: none;
+            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-dot {
+            width: 7px;
+            height: 7px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 0.5rem 1.5rem;
+            border-radius: var(--radius-pill);
+            border: 1px solid var(--line);
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -6px;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 2px;
+            transform: scaleX(0);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        .nav-links a.active {
+            color: var(--text-main);
+        }
+
+        .nav-links a.active::after {
+            transform: scaleX(1);
+        }
+
+        /* The single loudest element on the page — the hire CTA */
+        .btn-hire {
+            background: var(--accent);
+            color: var(--on-accent);
+            padding: 0.7rem 1.8rem;
+            border-radius: var(--radius-pill);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .btn-hire:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px rgba(255, 176, 32, 0.25);
+        }
+
+        /* ============================================
+           Hero
+           ============================================ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 5%;
+            position: relative;
+            padding-top: 80px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.8rem, 7vw, 5.5rem);
+            font-weight: 800;
+            line-height: 1.08;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+            color: var(--text-main);
+            max-width: 16ch;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        /* Amber underline instead of gradient text */
+        .hero h1 .marked {
+            position: relative;
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        .hero h1 .marked::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0.08em;
+            height: 0.12em;
+            background: var(--accent);
+            border-radius: 2px;
+            transform-origin: left center;
+            animation: drawUnderline 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1s both;
+        }
+
+        @keyframes drawUnderline {
+            from { transform: scaleX(0); }
+            to   { transform: scaleX(1); }
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            max-width: 620px;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .btn-primary {
+            background: var(--text-main);
+            color: var(--bg-main);
+            padding: 1rem 2.2rem;
+            border-radius: var(--radius-pill);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.02rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 28px rgba(232, 237, 242, 0.12);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-main);
+            padding: 1rem 2.2rem;
+            border-radius: var(--radius-pill);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.02rem;
+            border: 1px solid var(--line-strong);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-line);
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* ============================================
+           Tech Stack Marquee
+           ============================================ */
+        .tech-stack {
+            width: 100%;
+            padding: 3.5rem 0;
+            overflow: hidden;
+            position: relative;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .tech-stack::before, .tech-stack::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 180px;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .tech-stack::before {
+            left: 0;
+            background: linear-gradient(to right, var(--bg-main) 0%, transparent 100%);
+        }
+
+        .tech-stack::after {
+            right: 0;
+            background: linear-gradient(to left, var(--bg-main) 0%, transparent 100%);
+        }
+
+        .marquee {
+            display: flex;
+            gap: 3rem;
+            animation: scroll 40s linear infinite;
+            white-space: nowrap;
+            width: max-content;
+        }
+
+        .marquee:hover {
+            animation-play-state: paused;
+        }
+
+        .tech-item {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 0.7rem 1.3rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--line);
+            color: var(--text-muted);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            cursor: default;
+        }
+
+        .tech-item:hover {
+            color: var(--text-main);
+            border-color: var(--accent-line);
+        }
+
+        .tech-item i {
+            font-size: 1.25rem;
+            color: var(--text-faint);
+            transition: color 0.3s ease;
+        }
+
+        .tech-item:hover i {
+            color: var(--accent);
+        }
+
+        @keyframes scroll {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ============================================
+           Section Shell
+           ============================================ */
+        .section-padding {
+            padding: 8rem 5%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4.5rem;
+        }
+
+        /* Small monospace eyebrow — the accent's second home */
+        .eyebrow {
+            display: inline-block;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2.2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -1.5px;
+            line-height: 1.15;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 540px;
+            margin: 0 auto;
+        }
+
+        /* ============================================
+           Portfolio Grid
+           ============================================ */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+            gap: 2rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .portfolio-card {
+            background: var(--card-bg);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: var(--transition);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Cursor-tracking sheen — neutral, not colored */
+        .portfolio-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(
+                600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+                rgba(255, 255, 255, 0.05),
+                transparent 45%
+            );
+            z-index: 3;
+            pointer-events: none;
+            transition: opacity 500ms;
+            opacity: 0;
+        }
+
+        .portfolio-card:hover::before {
+            opacity: 1;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-line);
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+        }
+
+        .portfolio-img-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 60%;
+            overflow: hidden;
+            background: var(--bg-elevated);
+        }
+
+        .portfolio-img-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, var(--bg-main) 2%, transparent 55%);
+            z-index: 1;
+        }
+
+        .portfolio-card img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0.85;
+        }
+
+        .portfolio-card:hover img {
+            transform: scale(1.06);
+            opacity: 1;
+        }
+
+        .portfolio-content {
+            padding: 1.75rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 2;
+            margin-top: -30px;
+        }
+
+        .portfolio-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+            letter-spacing: -0.3px;
+        }
+
+        .portfolio-desc {
+            color: var(--text-muted);
+            font-size: 0.93rem;
+            margin-bottom: 1.25rem;
+            line-height: 1.55;
+        }
+
+        .portfolio-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--line);
+            padding: 0.25rem 0.6rem;
+            border-radius: var(--radius-sm);
+        }
+
+        .portfolio-link {
+            margin-top: auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-main);
+            padding: 0.65rem 1.15rem;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.92rem;
+            transition: var(--transition);
+            border: 1px solid var(--line-strong);
+            width: fit-content;
+        }
+
+        .portfolio-link:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--on-accent);
+        }
+
+        .portfolio-link i {
+            font-size: 0.85em;
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-link:hover i {
+            transform: translateX(3px);
+        }
+
+        /* ============================================
+           Resume — framed so the white PDF reads as
+           intentional "paper", not a lighting bug
+           ============================================ */
+        #resume {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .resume-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .resume-frame {
+            background: var(--bg-elevated);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-xl);
+            padding: 0.75rem;
+            box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Toolbar strip gives the white sheet an edge to sit against */
+        .resume-toolbar {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 0.85rem 0.85rem;
+            color: var(--text-faint);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.78rem;
+        }
+
+        .resume-toolbar .dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--line-strong);
+        }
+
+        .resume-toolbar .label {
+            margin-left: auto;
+        }
+
+        .resume-viewport {
+            height: 850px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            background: #fff;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+            background: #fff;
+        }
+
+        /* ============================================
+           Footer
+           ============================================ */
+        footer {
+            text-align: center;
+            padding: 5rem 5%;
+            border-top: 1px solid var(--line);
+            color: var(--text-muted);
+            position: relative;
+        }
+
+        footer h2 {
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .footer-lead {
+            margin-bottom: 2.5rem;
+            max-width: 420px;
+            margin-inline: auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            border: 1px solid var(--line);
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+            border-color: var(--accent-line);
+            transform: translateY(-4px);
+        }
+
+        .footer-note {
+            font-size: 0.88rem;
+            color: var(--text-faint);
+        }
+
+        /* ============================================
+           Animations
+           ============================================ */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ============================================
+           Scrollbar
+           ============================================ */
+        ::-webkit-scrollbar { width: 12px; }
+        ::-webkit-scrollbar-track { background: var(--bg-main); }
+        ::-webkit-scrollbar-thumb {
+            background: var(--bg-raised);
+            border-radius: 6px;
+            border: 3px solid var(--bg-main);
+        }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-faint); }
+
+        ::selection {
+            background: var(--accent);
+            color: var(--on-accent);
+        }
+
+        /* ============================================
+           Responsive
+           ============================================ */
+        @media (max-width: 768px) {
+            nav { padding: 1rem 5%; }
+            .logo { font-size: 1.5rem; }
+            .nav-links { display: none; }
+            .btn-hire { padding: 0.6rem 1.2rem; font-size: 0.85rem; }
+
+            .hero { padding-top: 100px; }
+            .hero h1 {
+                font-size: clamp(2.2rem, 9vw, 3.2rem);
+                letter-spacing: -1px;
+                max-width: 100%;
+            }
+            .hero h1 .marked { white-space: normal; }
+            .hero p {
+                font-size: 1rem;
+                padding: 0 0.5rem;
+                margin-bottom: 2rem;
+            }
+            .hero-cta {
+                flex-direction: column;
+                width: 100%;
+                gap: 0.85rem;
+            }
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .tech-stack { padding: 2.5rem 0; }
+            .tech-stack::before, .tech-stack::after { width: 60px; }
+
+            .section-padding { padding: 4.5rem 5%; }
+            .section-header { margin-bottom: 2.5rem; }
+            .portfolio-grid { gap: 1.5rem; }
+
+            .resume-viewport { height: 520px; }
+            .resume-frame { border-radius: var(--radius-lg); padding: 0.5rem; }
+            .resume-toolbar { padding: 0.3rem 0.6rem 0.6rem; font-size: 0.7rem; }
+
+            footer { padding: 3.5rem 5%; }
+        }
+
+        /* Respect users who ask for less motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            .marquee { animation: none; }
+            .hero h1 .marked::after { transform: scaleX(1); }
+        }
+    </style>
 </head>
 <body>
-  <div class="particles-bg">
-    <canvas id="particlesCanvas"></canvas>
-  </div>
-  <div id="splash" class="splash-screen">
-    <div class="splash-content">
-      <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="40" cy="40" r="36" fill="#1976d2" opacity="0.13"/>
-        <rect x="22" y="32" width="36" height="16" rx="8" fill="#388e7c" opacity="0.18"/>
-        <text x="40" y="48" text-anchor="middle" font-size="28" font-family="monospace" fill="#217a5b" opacity="0.8">{ }</text>
-      </svg>
-      <div class="splash-title">Welcome</div>
-      <div class="splash-loader">
-        <div class="loader-dot"></div>
-        <div class="loader-dot"></div>
-        <div class="loader-dot"></div>
-      </div>
+
+    <div class="ambient-glow"></div>
+    <div class="ambient-grid"></div>
+
+    <nav id="navbar">
+        <a href="#home" class="logo">
+            Iksan <span class="logo-dot"></span>
+        </a>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#portfolio">Work</a>
+            <a href="#resume">Resume</a>
+        </div>
+        <a href="https://wa.me/6281365386955" target="_blank" rel="noopener" class="btn-hire">Let's Talk</a>
+    </nav>
+
+    <section id="home" class="hero">
+        <h1>
+            Building Digital <span class="marked">Experiences</span> That Matter.
+        </h1>
+        <p>I am Iksan Nursalim, a Full Stack Developer with 4+ years building scalable web and mobile applications in Golang, React.js, and Flutter — including platforms serving over 233,000 users.</p>
+        <div class="hero-cta">
+            <a href="#portfolio" class="btn-primary">
+                View My Work <i class="fa-solid fa-arrow-down"></i>
+            </a>
+            <a href="Resume.pdf" download class="btn-secondary">
+                <i class="fa-solid fa-download"></i> Download CV
+            </a>
+        </div>
+    </section>
+
+    <div class="tech-stack">
+        <div class="marquee">
+            <div class="tech-item"><i class="fa-brands fa-golang"></i> Golang</div>
+            <div class="tech-item"><i class="fa-brands fa-react"></i> React</div>
+            <div class="tech-item"><i class="fa-brands fa-node-js"></i> Node.js</div>
+            <div class="tech-item"><i class="fa-brands fa-vuejs"></i> Vue &amp; Nuxt</div>
+            <div class="tech-item"><i class="fa-solid fa-mobile-screen"></i> Flutter</div>
+            <div class="tech-item"><i class="fa-brands fa-php"></i> Laravel</div>
+            <div class="tech-item"><i class="fa-solid fa-database"></i> PostgreSQL</div>
+            <div class="tech-item"><i class="fa-brands fa-aws"></i> AWS</div>
+            <div class="tech-item"><i class="fa-brands fa-git-alt"></i> Git</div>
+            <div class="tech-item"><i class="fa-brands fa-figma"></i> Figma</div>
+            <!-- Duplicate set for seamless infinite scroll -->
+            <div class="tech-item" aria-hidden="true"><i class="fa-brands fa-golang"></i> Golang</div>
+            <div class="tech-item" aria-hidden="true"><i class="fa-brands fa-react"></i> React</div>
+            <div class="tech-item" aria-hidden="true"><i class="fa-brands fa-node-js"></i> Node.js</div>
+            <div class="tech-item" aria-hidden="true"><i class="fa-brands fa-vuejs"></i> Vue &amp; Nuxt</div>
+            <div class="tech-item" aria-hidden="true"><i class="fa-solid fa-mobile-screen"></i> Flutter</div>
+            <div class="tech-item" aria-hidden="true"><i class="fa-brands fa-php"></i> Laravel</div>
+            <div class="tech-item" aria-hidden="true"><i class="fa-solid fa-database"></i> PostgreSQL</div>
+            <div class="tech-item" aria-hidden="true"><i class="fa-brands fa-aws"></i> AWS</div>
+            <div class="tech-item" aria-hidden="true"><i class="fa-brands fa-git-alt"></i> Git</div>
+            <div class="tech-item" aria-hidden="true"><i class="fa-brands fa-figma"></i> Figma</div>
+        </div>
     </div>
-  </div>
-  <header>
-    <div class="batik-overlay">
-      <svg width="100%" height="100%" viewBox="0 0 800 120" preserveAspectRatio="none" style="position:absolute;top:0;left:0;z-index:1;pointer-events:none;">
-        <defs>
-          <pattern id="batikPattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
-            <circle cx="30" cy="30" r="22" fill="#388e7c" opacity="0.13"/>
-            <circle cx="30" cy="30" r="12" fill="#1976d2" opacity="0.11"/>
-            <rect x="10" y="10" width="40" height="40" rx="12" fill="#fff" opacity="0.07"/>
-            <ellipse cx="30" cy="30" rx="18" ry="8" fill="#217a5b" opacity="0.09"/>
-          </pattern>
-        </defs>
-        <rect x="0" y="0" width="800" height="120" fill="url(#batikPattern)" />
-        <!-- Ornamen tambahan -->
-        <path d="M0,60 Q200,0 400,60 T800,60" stroke="#1976d2" stroke-width="3" fill="none" opacity="0.13"/>
-        <path d="M0,100 Q200,140 400,100 T800,100" stroke="#388e7c" stroke-width="2" fill="none" opacity="0.11"/>
-        <g opacity="0.12">
-          <circle cx="120" cy="40" r="18" fill="#217a5b"/>
-          <circle cx="680" cy="80" r="14" fill="#1976d2"/>
-          <ellipse cx="400" cy="30" rx="32" ry="10" fill="#388e7c"/>
-        </g>
-        <!-- Ornamen keren tambahan -->
-        <g>
-          <g style="animation: spinBatik 18s linear infinite; transform-origin: 700px 30px;">
-            <polygon points="700,30 715,45 730,30 715,15" fill="#1976d2" opacity="0.14"/>
-            <circle cx="715" cy="30" r="8" fill="#388e7c" opacity="0.13"/>
-          </g>
-          <g style="animation: spinBatik2 24s linear infinite; transform-origin: 100px 100px;">
-            <ellipse cx="100" cy="100" rx="18" ry="8" fill="#217a5b" opacity="0.13"/>
-            <polygon points="100,100 110,110 120,100 110,90" fill="#1976d2" opacity="0.12"/>
-          </g>
-        </g>
-      </svg>
-    </div>
-    <h1>Full Stack Developer</h1>
-    <p>Iksan Nursalim</p>
-    <a href="Resume.pdf" download class="cv-link" style="display:inline-block;margin-top:12px;font-weight:700;color:#1976d2;background:#fff;padding:8px 24px;border-radius:24px;box-shadow:0 2px 8px #1976d222;text-decoration:none;transition:background 0.2s,color 0.2s;">Download Resume</a>
-    <div class="header-illustration">
-      <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="60" cy="100" rx="38" ry="12" fill="#217a5b" opacity="0.18"/>
-        <rect x="38" y="40" width="44" height="32" rx="8" fill="#388e7c" opacity="0.22"/>
-        <rect x="48" y="52" width="24" height="8" rx="4" fill="#fff" opacity="0.18"/>
-        <circle cx="60" cy="56" r="8" fill="#1976d2" opacity="0.22"/>
-        <rect x="54" y="68" width="12" height="18" rx="6" fill="#217a5b" opacity="0.22"/>
-        <text x="60" y="62" text-anchor="middle" font-size="14" font-family="monospace" fill="#1976d2" opacity="0.7">dev</text>
-      </svg>
-    </div>
-  </header>
-  <nav>
-    <button class="nav-btn active" onclick="showSection('cv')">
-      Resume
-    </button>
-    <button class="nav-btn" onclick="showSection('portfolio')">
-      Portofolio
-    </button>
-  </nav>
-  <section id="cv" class="section active" style="margin-bottom: 100px;">
-    <div class="pdf-viewer">
-      <iframe src="pdfjs/web/viewer.html?file=../Resume.pdf#sidebar=0" width="100%" height="1000" frameborder="0" allowfullscreen></iframe>
-    </div>
-  </section>
-  <section id="portfolio" class="section" style="margin-bottom:100px">
-    <div id="portfolio-list" class="portfolio-list"></div>
-    <div class="portfolio-more">Dan masih banyak lagi portofolio yang belum dimasukkan.</div>
-  </section>
-  <script>
-    // Render portfolio cards from JSON
-    async function renderPortfolio() {
-      const container = document.getElementById('portfolio-list');
-      if(!container) return;
-      container.innerHTML = '<div style="color:#888;text-align:center;">Loading...</div>';
-      try {
-        const res = await fetch('portfolio.json');
-        const data = await res.json();
-        container.innerHTML = data.map(item => `
-          <div class="portfolio-card">
-            <img src="${item.image}" alt="${item.nama}" />
-            <div class="card-title">${item.nama}</div>
-            <a href="${item.link}" class="card-link" target="_blank">Kunjungi Website</a>
-          </div>
-        `).join('');
-      } catch(e) {
-        container.innerHTML = '<div style="color:#d32f2f;text-align:center;">Gagal memuat data portofolio.</div>';
-      }
-    }
-    // Panggil renderPortfolio saat menu portofolio dibuka
-    function showSection(section) {
-      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-      document.getElementById(section).classList.add('active');
-      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-      if(section === 'cv') {
-        document.querySelectorAll('.nav-btn')[0].classList.add('active');
-      } else {
-        document.querySelectorAll('.nav-btn')[1].classList.add('active');
-        renderPortfolio();
-      }
-    }
-    // Jika pertama kali buka portofolio, render juga
-    if(window.location.hash==='#portfolio') renderPortfolio();
-    // Particle 3D animation (multi-shape)
-    const canvas = document.getElementById('particlesCanvas');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-    const codeSymbols = ['{}', '</>', '()', '=>', '[]', '/* */', 'fn', 'let', 'const', 'class', 'import', 'return', 'if', 'else', '&&', '||', 'for', 'while', 'try', 'catch'];
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-    function createParticles() {
-      particles = [];
-      const shapes = ['circle','triangle','square','code'];
-      for(let i=0; i<36; i++) {
-        const shape = shapes[Math.floor(Math.random()*shapes.length)];
-        particles.push({
-          x: Math.random()*canvas.width,
-          y: Math.random()*canvas.height,
-          z: Math.random()*200+50,
-          r: Math.random()*8+6,
-          dx: (Math.random()-0.5)*0.6,
-          dy: (Math.random()-0.5)*0.6,
-          dz: (Math.random()-0.5)*0.2,
-          color: [
-            'rgba(56,142,124,0.5)', // hijau gelap
-            'rgba(25,118,210,0.4)', // biru
-            'rgba(38,50,56,0.3)',   // abu gelap
-            'rgba(255,255,255,0.18)'
-          ][Math.floor(Math.random()*4)],
-          shape,
-          symbol: shape==='code' ? codeSymbols[Math.floor(Math.random()*codeSymbols.length)] : null
+
+    <section id="portfolio" class="section-padding">
+        <div class="section-header">
+            <span class="eyebrow">Selected Work</span>
+            <h2>Things I've shipped</h2>
+            <p>Production systems built end-to-end — from database schema and API design to the interface users actually touch.</p>
+        </div>
+        <div class="portfolio-grid" id="portfolio-container">
+            <div style="text-align:center; grid-column: 1/-1; color: var(--text-muted); padding: 4rem 0;">
+                <i class="fa-solid fa-circle-notch fa-spin fa-2x" style="color: var(--accent); margin-bottom: 1.5rem;"></i>
+                <p>Loading projects…</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="resume" class="section-padding">
+        <div class="section-header">
+            <span class="eyebrow">Resume</span>
+            <h2>Experience &amp; background</h2>
+            <p>Four years across e-learning platforms, enterprise information systems, and cross-platform mobile apps.</p>
+        </div>
+        <div class="resume-actions">
+            <a href="Resume.pdf" download class="btn-primary">
+                <i class="fa-solid fa-download"></i> Download PDF
+            </a>
+            <a href="Resume.pdf" target="_blank" rel="noopener" class="btn-secondary">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Open in new tab
+            </a>
+        </div>
+        <div class="resume-frame">
+            <div class="resume-toolbar">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                <span class="label">Iksan_Nursalim_CV.pdf</span>
+            </div>
+            <div class="resume-viewport">
+                <!-- ?file= resolves relative to viewer.html, so reaching the
+                     project root takes two levels up, not one. -->
+                <iframe src="pdfjs/web/viewer.html?file=../../Resume.pdf#sidebar=0"
+                        title="Iksan Nursalim Resume" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <h2>Let's build something great.</h2>
+        <p class="footer-lead">Open to remote full stack roles and freelance collaborations. I usually reply within a day.</p>
+
+        <div class="social-links">
+            <a href="https://github.com/IksanNurs" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/iksan-nursalim/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="mailto:iksannursalim1234@gmail.com" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
+        </div>
+        <p class="footer-note">&copy; 2026 Iksan Nursalim. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // ---- Navbar background on scroll (class-based, no inline overrides) ----
+        const navbar = document.getElementById('navbar');
+        const onScroll = () => navbar.classList.toggle('scrolled', window.scrollY > 50);
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+
+        // ---- Active nav link ----
+        // The old version compared with href.includes(current); when `current`
+        // was an empty string every link matched and all three lit up at once.
+        const navLinks = [...document.querySelectorAll('.nav-links a')];
+        const sections = [...document.querySelectorAll('section[id]')];
+
+        const setActive = (id) => {
+            navLinks.forEach(link =>
+                link.classList.toggle('active', link.getAttribute('href') === `#${id}`)
+            );
+        };
+
+        const spy = new IntersectionObserver((entries) => {
+            entries
+                .filter(entry => entry.isIntersecting)
+                .forEach(entry => setActive(entry.target.id));
+        }, { rootMargin: '-45% 0px -45% 0px' });
+
+        sections.forEach(section => spy.observe(section));
+        setActive('home');
+
+        // ---- Cursor sheen on portfolio cards ----
+        const container = document.getElementById('portfolio-container');
+        container.addEventListener('mousemove', (e) => {
+            for (const card of container.querySelectorAll('.portfolio-card')) {
+                const rect = card.getBoundingClientRect();
+                card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+                card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+            }
         });
-      }
-    }
-    createParticles();
-    function drawParticles() {
-      ctx.clearRect(0,0,canvas.width,canvas.height);
-      for(const p of particles) {
-        let scale = 1 + p.z/300;
-        ctx.save();
-        ctx.globalAlpha = 0.8;
-        ctx.shadowColor = p.color;
-        ctx.translate(p.x, p.y);
-        ctx.rotate((p.x+p.y)/500);
-        ctx.beginPath();
-        if(p.shape==='circle') {
-          ctx.arc(0,0,p.r*scale,0,2*Math.PI);
-          ctx.fillStyle = p.color;
-          ctx.fill();
-        } else if(p.shape==='triangle') {
-          ctx.moveTo(0,-p.r*scale);
-          ctx.lineTo(p.r*scale,p.r*scale);
-          ctx.lineTo(-p.r*scale,p.r*scale);
-          ctx.closePath();
-          ctx.fillStyle = p.color;
-          ctx.fill();
-        } else if(p.shape==='square') {
-          ctx.rect(-p.r*scale,-p.r*scale,p.r*scale*2,p.r*scale*2);
-          ctx.fillStyle = p.color;
-          ctx.fill();
-        } else if(p.shape==='code' && p.symbol) {
-          ctx.font = `${Math.round(p.r*2.2*scale)}px 'Roboto', monospace`;
-          ctx.fillStyle = p.color;
-          ctx.globalAlpha = 0.7;
-          ctx.textAlign = 'center';
-          ctx.textBaseline = 'middle';
-          ctx.fillText(p.symbol, 0, 0);
+
+        // ---- Image fallback ----
+        // via.placeholder.com is dead, so the old onerror left a broken icon.
+        // This inline SVG needs no network at all.
+        const FALLBACK = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(
+            `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400">
+               <rect width="600" height="400" fill="#131A22"/>
+               <text x="300" y="205" fill="#4E5A66" font-family="sans-serif"
+                     font-size="18" text-anchor="middle">Preview unavailable</text>
+             </svg>`
+        );
+
+        const escapeHtml = (str) => String(str).replace(/[&<>"']/g, ch => ({
+            '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+        }[ch]));
+
+        // ---- Load portfolio ----
+        async function loadPortfolio() {
+            try {
+                const res = await fetch('portfolio.json');
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const data = await res.json();
+
+                container.innerHTML = data.map((item, index) => {
+                    const tags = (item.tech || [])
+                        .map(t => `<span class="tech-tag">${escapeHtml(t)}</span>`)
+                        .join('');
+
+                    return `
+                    <article class="portfolio-card" style="animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${index * 0.1}s both;">
+                        <div class="portfolio-img-wrapper">
+                            <img src="${escapeHtml(item.image)}" alt="Screenshot of ${escapeHtml(item.nama)}" loading="lazy">
+                            <div class="portfolio-img-overlay"></div>
+                        </div>
+                        <div class="portfolio-content">
+                            <h3 class="portfolio-title">${escapeHtml(item.nama)}</h3>
+                            <p class="portfolio-desc">${escapeHtml(item.desc || '')}</p>
+                            <div class="portfolio-tech">${tags}</div>
+                            <a href="${escapeHtml(item.link)}" target="_blank" rel="noopener" class="portfolio-link">
+                                Visit site <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </article>`;
+                }).join('');
+
+                container.querySelectorAll('img').forEach(img => {
+                    img.addEventListener('error', () => { img.src = FALLBACK; }, { once: true });
+                });
+            } catch (e) {
+                container.innerHTML = `
+                    <div style="text-align:center; grid-column: 1/-1; color: var(--text-muted);
+                                padding: 3rem; border-radius: var(--radius-lg); border: 1px solid var(--line);">
+                        Couldn't load projects (${escapeHtml(e.message)}).
+                        Serve this page over HTTP so <code>portfolio.json</code> can be fetched.
+                    </div>`;
+            }
         }
-        ctx.restore();
-      }
-    }
-    function updateParticles() {
-      for(const p of particles) {
-        p.x += p.dx;
-        p.y += p.dy;
-        p.z += p.dz;
-        if(p.x<0||p.x>canvas.width) p.dx*=-1;
-        if(p.y<0||p.y>canvas.height) p.dy*=-1;
-        if(p.z<50||p.z>250) p.dz*=-1;
-      }
-    }
-    function animateParticles() {
-      updateParticles();
-      drawParticles();
-      requestAnimationFrame(animateParticles);
-    }
-    animateParticles();
-    window.addEventListener('DOMContentLoaded', function() {
-      setTimeout(function() {
-        document.getElementById('splash').classList.add('hide');
-      }, 1800);
-    });
-  </script>
+
+        document.addEventListener('DOMContentLoaded', loadPortfolio);
+    </script>
 </body>
 </html>

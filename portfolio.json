@@ -1,31 +1,43 @@
 [
   {
     "nama": "Landing Page APPSKEP",
+    "desc": "Company landing page and entry point for Appskep's suite of exam-preparation products.",
+    "tech": ["Nuxt.js", "Golang"],
     "link": "https://appskep.id",
     "image": "image/appskep.png"
   },
   {
     "nama": "UKOM APPSKEP",
+    "desc": "Competency-exam prep platform for healthcare students, with question banks and timed practice tests.",
+    "tech": ["React.js", "Golang"],
     "link": "https://ukom.appskep.id",
     "image": "image/ukom.png"
   },
   {
     "nama": "CPNS APPSKEP",
+    "desc": "Civil-servant selection exam platform with tryout simulations, scoring, and progress tracking.",
+    "tech": ["React.js", "Golang"],
     "link": "https://cpns.appskep.id",
     "image": "image/cpns.png"
   },
-   {
+  {
     "nama": "BASE APPSKEP",
+    "desc": "Centralized OAuth 2.0 server and admin panel that authenticates users across every Appskep system.",
+    "tech": ["Golang", "OAuth 2.0"],
     "link": "https://base.appskep.id",
     "image": "image/base.png"
   },
   {
-    "nama": "inventory",
+    "nama": "Inventory System",
+    "desc": "Asset and stock management information system for tracking inventory movement across an organization.",
+    "tech": ["Node.js", "EJS"],
     "link": "https://inventory.inovansa.com",
     "image": "image/inventory.png"
   },
-   {
-    "nama": "undangan digital",
+  {
+    "nama": "Undangan Digital",
+    "desc": "Digital invitation platform generating personalized, shareable invite pages with RSVP handling.",
+    "tech": ["Node.js", "MySQL"],
     "link": "https://undangan.inovansa.com",
     "image": "image/undangan.png"
   }
