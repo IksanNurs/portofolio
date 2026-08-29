@@ -2,43 +2,101 @@
   {
     "nama": "Landing Page APPSKEP",
     "desc": "Company landing page and entry point for Appskep's suite of exam-preparation products.",
-    "tech": ["Nuxt.js", "Golang"],
+    "tech": [
+      "Nuxt.js",
+      "Golang"
+    ],
     "link": "https://appskep.id",
     "image": "image/appskep.png"
   },
   {
     "nama": "UKOM APPSKEP",
     "desc": "Competency-exam prep platform for healthcare students, with question banks and timed practice tests.",
-    "tech": ["React.js", "Golang"],
+    "tech": [
+      "React.js",
+      "Golang"
+    ],
     "link": "https://ukom.appskep.id",
     "image": "image/ukom.png"
   },
   {
     "nama": "CPNS APPSKEP",
     "desc": "Civil-servant selection exam platform with tryout simulations, scoring, and progress tracking.",
-    "tech": ["React.js", "Golang"],
+    "tech": [
+      "React.js",
+      "Golang"
+    ],
     "link": "https://cpns.appskep.id",
     "image": "image/cpns.png"
   },
   {
     "nama": "BASE APPSKEP",
     "desc": "Centralized OAuth 2.0 server and admin panel that authenticates users across every Appskep system.",
-    "tech": ["Golang", "OAuth 2.0"],
+    "tech": [
+      "Golang",
+      "OAuth 2.0"
+    ],
     "link": "https://base.appskep.id",
     "image": "image/base.png"
   },
   {
     "nama": "Inventory System",
     "desc": "Asset and stock management information system for tracking inventory movement across an organization.",
-    "tech": ["Node.js", "EJS"],
+    "tech": [
+      "Node.js",
+      "EJS"
+    ],
     "link": "https://inventory.inovansa.com",
     "image": "image/inventory.png"
   },
   {
     "nama": "Undangan Digital",
     "desc": "Digital invitation platform generating personalized, shareable invite pages with RSVP handling.",
-    "tech": ["Node.js", "MySQL"],
+    "tech": [
+      "Node.js",
+      "MySQL"
+    ],
     "link": "https://undangan.inovansa.com",
     "image": "image/undangan.png"
+  },
+  {
+    "nama": "Appskarir",
+    "desc": "Job portal connecting healthcare professionals with vacancies from verified facilities across Indonesia, with curated listings and applicant tracking.",
+    "tech": [
+      "React.js",
+      "Golang"
+    ],
+    "link": "https://karir.appskep.id/",
+    "image": "image/karir.png"
+  },
+  {
+    "nama": "OBE ITP",
+    "desc": "Outcome-Based Education platform for Institut Teknologi Padang, managing graduate profiles, CPL/CPMK mapping, and course learning outcomes in one system.",
+    "tech": [
+      "Laravel",
+      "MySQL"
+    ],
+    "link": "https://obe.itp.ac.id/",
+    "image": "image/obe.png"
+  },
+  {
+    "nama": "RPL ITP",
+    "desc": "Recognition of Prior Learning admissions portal for Institut Teknologi Padang, handling applicant registration across four selection tracks and ten study programs.",
+    "tech": [
+      "Laravel",
+      "MySQL"
+    ],
+    "link": "https://rpl.itp.ac.id/",
+    "image": "image/rpl.png"
+  },
+  {
+    "nama": "SIPROKER ITP",
+    "desc": "Work program information system for Institut Teknologi Padang, centralising planning, progress monitoring, documentation, and evaluation in a single real-time dashboard.",
+    "tech": [
+      "Laravel",
+      "MySQL"
+    ],
+    "link": "https://siproker.itp.ac.id/",
+    "image": "image/siproker.png"
   }
 ]
